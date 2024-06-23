@@ -133,7 +133,10 @@
         // stories/{id}.md
         const response = await fetch(`stories/${id}.md`)
         const content = await response.text()
-        return { title: `Story ${id}`, content }
+        return {
+          content,
+          title: stories.find((story) => story.id === id).title,
+        }
       }
 
       // Function to generate ToC from markdown
