@@ -208,6 +208,21 @@
         headings.forEach((heading) => {
           heading.id = heading.textContent.toLowerCase().replace(/\s/g, '-')
         })
+
+        // Remember scroll position
+        setTimeout(() => {
+          const scrollPosition = localStorage.getItem('scrollPosition')
+          if (scrollPosition) {
+            document.documentElement.scrollTop = scrollPosition
+          }
+          // Save scroll position
+          window.addEventListener('scroll', () => {
+            localStorage.setItem(
+              'scrollPosition',
+              document.documentElement.scrollTop
+            )
+          })
+        }, 0)
       }
 
       // Initial render
